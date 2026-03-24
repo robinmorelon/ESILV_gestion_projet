@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ParkPredict Paris | Smart City</title>
+    <title>ParkPredict Paris | Dashboard Professionnel</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="style.css">
 </head>
@@ -12,16 +12,24 @@
         <h1>ParkPredict <span>Paris</span></h1>
         
         <div class="card">
-            <h3>📡 Données Temps Réel</h3>
-            <p id="weather-info">Chargement de la météo...</p>
+            <h3>📡 Métriques Temps Réel</h3>
+            <p id="weather-info">Connexion météo...</p>
+            <p id="data-status" style="margin-top: 5px; color: #3498db; font-weight: bold;">Ingestion des données...</p>
         </div>
         
+        <div class="card">
+            <h3>🚗 Trafic Routier (En direct)</h3>
+            <ul id="traffic-info" style="list-style: none; font-size: 0.85rem; padding: 0; margin-top: 8px;">
+                <li>Analyse des capteurs de la ville...</li>
+            </ul>
+        </div>
+
         <div class="card">
             <h3>🧠 Modèle Prédictif IA</h3>
             <ul class="legend">
                 <li><span class="dot green"></span> > 70% (Forte probabilité)</li>
-                <li><span class="dot orange"></span> 30% - 70% (Moyenne)</li>
-                <li><span class="dot red"></span> < 30% (Saturé)</li>
+                <li><span class="dot orange"></span> 30% - 70% (Tension moyenne)</li>
+                <li><span class="dot red"></span> < 30% (Secteur saturé)</li>
             </ul>
         </div>
 
@@ -31,39 +39,31 @@
     <div id="info-modal" class="modal hidden">
         <div class="modal-content">
             <span id="close-modal" class="close-btn">&times;</span>
-            <h2>📖 Dictionnaire des Données (OpenData Paris)</h2>
-            
+            <h2>📖 Dictionnaire des Données Urbaines</h2>
             <div class="info-section">
-                <h3>🚙 Régimes Particuliers (regpar)</h3>
+                <h3>🚙 Régimes d'usage (regpar)</h3>
                 <ul>
-                    <li><b>Mixte :</b> Payant visiteur, mais autorisé aux résidents du quartier.</li>
-                    <li><b>Rotatif :</b> Stationnement payant pour tous, limité dans le temps (pour favoriser la rotation près des commerces).</li>
-                    <li><b>Livraison / Gaine autorisée :</b> Réservé aux professionnels de la livraison (parfois partagé la nuit/dimanche).</li>
-                    <li><b>GIG-GIC / PMR :</b> Strictement réservé aux Personnes à Mobilité Réduite.</li>
-                    <li><b>Transport de fonds :</b> Emplacements ultra-sécurisés pour les convoyeurs (banques).</li>
-                    <li><b>Taxis :</b> Stations de prise en charge pour taxis.</li>
-                    <li><b>2 Roues (Motos/Vélos) :</b> Emplacements adaptés aux petits gabarits.</li>
+                    <li><b>Mixte :</b> Tarification visiteur standard, préférentielle pour les résidents.</li>
+                    <li><b>Rotatif :</b> Stationnement de courte durée pour favoriser l'activité commerciale.</li>
+                    <li><b>Livraison :</b> Espaces logistiques professionnels.</li>
+                    <li><b>PMR / GIG-GIC :</b> Emplacements réservés à l'accessibilité.</li>
                 </ul>
             </div>
-
             <div class="info-section">
-                <h3>💳 Régime Principal & Tarification (regpri / stv)</h3>
+                <h3>💳 Régime Tarifaire (regpri)</h3>
                 <ul>
-                    <li><b>Gratuit :</b> Rares zones non payantes (bois de Vincennes/Boulogne).</li>
-                    <li><b>Payant :</b> Dépend du Secteur Tarifaire Visiteur (STV) allant du centre (plus cher) à la périphérie (moins cher).</li>
+                    <li><b>Payant :</b> Assujetti au Secteur Tarifaire Visiteur (STV) en vigueur.</li>
+                    <li><b>Gratuit :</b> Zones non réglementées.</li>
                 </ul>
             </div>
-
             <div class="info-section">
-                <h3>📐 Disposition et Localisation (typsta / locsta)</h3>
+                <h3>📐 Configuration Spatiale (typsta)</h3>
                 <ul>
-                    <li><b>Longitudinal :</b> Stationnement classique en "créneau".</li>
-                    <li><b>Bataille / Épi :</b> Perpendiculaire ou en diagonale.</li>
-                    <li><b>Chaussée / Trottoir :</b> Indique si la place est peinte sur la route ou sur un espace surélevé (trottoir partagé).</li>
+                    <li><b>Longitudinal :</b> Stationnement aligné sur la voirie (Créneau).</li>
+                    <li><b>Bataille / Épi :</b> Stationnement perpendiculaire ou angulaire.</li>
                 </ul>
             </div>
-            
-            <p class="modal-footer">Source : API "stationnement-voie-publique-emplacements" de Paris</p>
+            <p class="modal-footer">Données certifiées OpenData Ville de Paris</p>
         </div>
     </div>
 
